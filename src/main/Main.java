@@ -17,6 +17,15 @@ public class Main {
 
         MongoDB.connect();
 
+        System.out.println("Testing DB...");
+
+        try {
+            MongoDB.getDatabase().listCollectionNames().first();
+            System.out.println("DB Working");
+        } catch (Exception e) {
+            System.out.println("DB NOT working");
+        }
+
         Scanner sc = new Scanner(System.in);
 
         System.out.println("1. Start Server");
