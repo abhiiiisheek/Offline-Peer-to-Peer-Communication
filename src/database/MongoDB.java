@@ -10,11 +10,21 @@ public class MongoDB {
     private static MongoDatabase database;
 
     public static void connect() {
+        try {
+            System.out.println("Connecting to MongoDB...");
 
-        mongoClient = MongoClients.create("mongodb+srv://shashinegi597_db_user:Mohitnegi1234@cluster0.os2p4dx.mongodb.net/?appName=Cluster0");
-        database = mongoClient.getDatabase("chat_app");
+            mongoClient = MongoClients.create("mongodb://127.0.0.1:27017");
 
-        System.out.println("✅ Connected to MongoDB");
+            database = mongoClient.getDatabase("chat_app");
+
+            database.listCollectionNames().first();
+
+            System.out.println("Connected to MongoDB");
+
+        } catch (Exception e) {
+            System.out.println("MongoDB connection failed");
+            e.printStackTrace();
+        }
     }
 
     public static MongoDatabase getDatabase() {
